@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <delete file="C:\utd\Testing\STVV-Project-master\STVV-Project-master\pitest-pitest-parent-1.2.4\pitest\target/pitest-1.2.4.jar"/>
+</target>
+</project>

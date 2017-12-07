@@ -37,12 +37,19 @@ import org.pitest.mutationtest.engine.gregor.mutators.ConstructorCallMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.IncrementsMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.InlineConstantMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.InvertNegsMutator;
-import org.pitest.mutationtest.engine.gregor.mutators.MathMutator;
+import org.pitest.mutationtest.engine.gregor.mutators.AORMutator;
+//import org.pitest.mutationtest.engine.gregor.mutators.MathMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.NonVoidMethodCallMutator;
+import org.pitest.mutationtest.engine.gregor.mutators.RelationalOperatorReplacementMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.RemoveConditionalMutator.Choice;
 import org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.ArithmeticToOperandMutator;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.ReplaceWithUnaryMutator;
+
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.ABSMutator;
+import org.pitest.mutationtest.engine.gregor.mutators.experimental.CRCRMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.VoidMethodCallMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator;
 import org.pitest.mutationtest.engine.gregor.mutators.experimental.RemoveIncrementsMutator;
@@ -75,8 +82,11 @@ public final class Mutator {
     /**
      * Default mutator that mutates binary arithmetic operations.
      */
-    add("MATH", MathMutator.MATH_MUTATOR);
-
+    //add("MATH", MathMutator.MATH_MUTATOR);
+    /**
+     * Additional mutators that mutate binary arithmetic operations
+     */
+    
     /**
      * Default mutator that removes method calls to void methods.
      *
@@ -95,17 +105,52 @@ public final class Mutator {
      */
     add("CONDITIONALS_BOUNDARY",
         ConditionalsBoundaryMutator.CONDITIONALS_BOUNDARY_MUTATOR);
-
+    /**
+     * Mutators that extend the PITest Mutation Engine
+     */
+    //ABS: Replace its value by its negation
+    add("Absolute Mutator", ABSMutator.Absolute_Mutator);//
+    
+    //AOR&OBBN: Replace its value by 
+    add("Arithmentic and Bitwise Replacement 1", AORMutator.MathMutator.Arithmetic_Bitwise_Replacement_Mutator);
+    add("Arithmentic and Bitwise Replacement 2", AORMutator.MathMutator2.Arithmetic_Bitwise_Replacement_Mutator);
+    add("Arithmentic and Bitwise Replacement 3", AORMutator.MathMutator3.Arithmetic_Bitwise_Replacement_Mutator);
+    add("Arithmentic and Bitwise Replacement 4", AORMutator.MathMutator4.Arithmetic_Bitwise_Replacement_Mutator);
+    
+    //AOD: Replace Arithmetic Operator to Only one of the Operand
+    add("AOD_Mutator1", ArithmeticToOperandMutator.ArithmeticToOperandMutator1.AOD_MUTATION);//
+    add("AOD_Mutator2", ArithmeticToOperandMutator.ArithmeticToOperandMutator2.AOD_MUTATION);//
+    
+    //ROR: Replace Relational Operator
+    add("RelationalReplacement1", RelationalOperatorReplacementMutator.ConditionalsBoundaryMutator.CBD_MUTATOR);//
+    add("RelationalReplacement2", RelationalOperatorReplacementMutator.ConditionalsBoundaryMutator2.CBD_MUTATOR);//
+    add("RelationalReplacement3", RelationalOperatorReplacementMutator.ConditionalsBoundaryMutator3.CBD_MUTATOR);//
+    
+    //UOI: Add Increment or Decrement Mutator
+    add("UOI_Mutator1", ReplaceWithUnaryMutator.AddIncrementsMutator.Unary_Replacement_MUTATOR);//
+    add("UOI_Mutator2", ReplaceWithUnaryMutator.AddDecrementsMutator.Unary_Replacement_MUTATOR);//
+    add("UOI_Mutator3", ReplaceWithUnaryMutator.RemoveIncrementsMutator.Unary_Replacement_MUTATOR);//
+    
+    
+    //CRCR: Replace with constants like 0,1, -1, a+1 or a-1
+    add("CRCR1", CRCRMutator.CRCRMutator1.CRCR_MUTATOR);//
+    add("CRCR2", CRCRMutator.CRCRMutator2.CRCR_MUTATOR);//
+    add("CRCR3", CRCRMutator.CRCRMutator3.CRCR_MUTATOR);//
+    add("CRCR4", CRCRMutator.CRCRMutator4.CRCR_MUTATOR);//
+    add("CRCR5", CRCRMutator.CRCRMutator5.CRCR_MUTATOR);//
+    
+    
     /**
      * Default mutator that mutates increments, decrements and assignment
      * increments and decrements of local variables.
      */
+    
     add("INCREMENTS", IncrementsMutator.INCREMENTS_MUTATOR);
-
+    
     /**
      * Optional mutator that removes local variable increments.
      */
-
+    
     add("REMOVE_INCREMENTS", RemoveIncrementsMutator.REMOVE_INCREMENTS_MUTATOR);
 
     /**
@@ -189,7 +234,7 @@ public final class Mutator {
    */
   public static Collection<MethodMutatorFactory> defaults() {
     return group(InvertNegsMutator.INVERT_NEGS_MUTATOR,
-        ReturnValsMutator.RETURN_VALS_MUTATOR, MathMutator.MATH_MUTATOR,
+        //ReturnValsMutator.RETURN_VALS_MUTATOR, MathMutator.MATH_MUTATOR,
         VoidMethodCallMutator.VOID_METHOD_CALL_MUTATOR,
         NegateConditionalsMutator.NEGATE_CONDITIONALS_MUTATOR,
         ConditionalsBoundaryMutator.CONDITIONALS_BOUNDARY_MUTATOR,

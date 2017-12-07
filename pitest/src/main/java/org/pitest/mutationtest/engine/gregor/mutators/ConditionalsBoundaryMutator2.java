@@ -26,7 +26,7 @@ import org.pitest.mutationtest.engine.gregor.MutationContext;
 
 public enum ConditionalsBoundaryMutator2 implements MethodMutatorFactory {
 
-  CONDITIONALS_BOUNDARY_MUTATOR;
+  CONDITIONALS_BOUNDARY_MUTATOR2;
 
   @Override
   public MethodVisitor create(final MutationContext context,
@@ -52,10 +52,10 @@ class ConditionalsBoundaryMethodVisitor2 extends AbstractJumpMutator {
   private static final Map<Integer, Substitution> MUTATIONS   = new HashMap<Integer, Substitution>();
 
   static {
-    MUTATIONS.put(Opcodes.IFLE, new Substitution(Opcodes.IFGE, DESCRIPTION));
-    MUTATIONS.put(Opcodes.IFGE, new Substitution(Opcodes.IFLE, DESCRIPTION));
-    MUTATIONS.put(Opcodes.IFGT, new Substitution(Opcodes.IFLT, DESCRIPTION));
-    MUTATIONS.put(Opcodes.IFLT, new Substitution(Opcodes.IFGT, DESCRIPTION));
+    MUTATIONS.put(Opcodes.IFLE, new Substitution(Opcodes.IFGT, DESCRIPTION));
+    MUTATIONS.put(Opcodes.IFGE, new Substitution(Opcodes.IFLT, DESCRIPTION));
+    MUTATIONS.put(Opcodes.IFGT, new Substitution(Opcodes.IFLE, DESCRIPTION));
+    MUTATIONS.put(Opcodes.IFLT, new Substitution(Opcodes.IFGE, DESCRIPTION));
     MUTATIONS.put(Opcodes.IF_ICMPLE, new Substitution(Opcodes.IF_ICMPLT,
         DESCRIPTION));
     MUTATIONS.put(Opcodes.IF_ICMPGE, new Substitution(Opcodes.IF_ICMPGT,

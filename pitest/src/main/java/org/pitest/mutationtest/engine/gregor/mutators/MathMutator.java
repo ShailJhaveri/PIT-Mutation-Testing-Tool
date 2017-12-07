@@ -83,7 +83,6 @@ class MathMethodVisitor extends AbstractInsnMutator {
         "Replaced Unsigned Shift Right with Shift Left"));
 
     // longs
-
     MUTATIONS.put(Opcodes.LADD, new InsnSubstitution(Opcodes.LSUB,
         "Replaced long addition with subtraction"));
     MUTATIONS.put(Opcodes.LSUB, new InsnSubstitution(Opcodes.LADD,
